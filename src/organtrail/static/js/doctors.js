@@ -16,9 +16,12 @@ var Doctors = Backbone.Collection.extend({
 
 // populates the table
 var DoctorCollectionView = Backbone.View.extend({
+	events: {
+		"click a ": 'selectDoctor'
+		}
 	initialize: function() {
 		this.template = _.template('<div class="row">' +
-				'<a href="#" data-dismiss="modal">' +
+				'<a href="#" data-id="<%= model.get(\'id\') %>" data-dismiss="modal">' +
 				'<div class="span6 doctor-pane">' +
    				'<h4 id="doctor-name"><%= model.get("name") %></h4>' +
     				'<table class="table table-condensed">' +
@@ -39,4 +42,7 @@ var DoctorCollectionView = Backbone.View.extend({
 			this.$el.append(this.template({index : i, model : this.collection.at(i)}));
 		}
 	}
+	selectDoctor: function(event) {
+		window.recipients.get(window.currentPlayer).set('doctor',
+		parseInt($(event.target).data('id')));
 })
