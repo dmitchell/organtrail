@@ -43,7 +43,7 @@ var DoctorCollectionView = Backbone.View.extend({
 		}
 	},
 	selectDoctor: function(event) {
-		window.recipients.get(window.currentPlayer).set('doctor',
-		parseInt($(event.target).data('id')));
+		window.recipients.get(window.currentPlayer).save('doctor',
+				parseInt($(event.target).data('id')));
 	}
 })
