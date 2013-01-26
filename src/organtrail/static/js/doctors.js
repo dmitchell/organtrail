@@ -17,11 +17,22 @@ var Doctors = Backbone.Collection.extend({
 // populates the table
 var DoctorCollectionView = Backbone.View.extend({
 	initialize: function() {
-		this.template = _.template('<tr class="patient-row">' +
-				'<td class="patient-pos"><%= index + 1 %></td>' +
-				'<td class="patient-name"><%= model.get("name") %></td>' +
-				'<td class="patient-ttl"><%= model.get("lifeExpectancy") %>d</td></tr>');
-	},
+		this.template = _.template('<div class="row">' +
+				'<a href="#" data-dismiss="modal">' +
+				'<div class="span6 doctor-pane">' +
+   				'<h4 id="doctor-name"><%= model.get("name") %></h4>' +
+    				'<table class="table table-condensed">' +
+    					'<tbody>' +
+    						'<tr><td rowspan="3" id="doctor-description" width="70%"><%= model.get("description") %></td>' +
+    						'<td width="25%">Waiting List</td>' +
+    						'<td id="doctor-waitTime" width="5%"><%= model.get("waitTime") %></td></tr>' +
+    						'<tr><td>Success Rate</td><td class="id-rating">75%</td></tr>' +
+    						'<tr><td>Cost</td><td id="doctor-cost"><%= model.get("cost") %></td></tr>' +
+    						'</tbody>' +
+    				'</table>' +
+    			'</div>' +
+    		'</div>');
+    	},
 	render : function() {
 		this.$el.html('');
 		for (var i = 0; i < this.collection.length; i++) {
