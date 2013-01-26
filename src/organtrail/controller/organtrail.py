@@ -27,7 +27,7 @@ def waiting_room(request):
                         content_type = "application/json")
                                 
 
-def recipient(request):
+def recipient(request, provided_id):
     if request.method == 'GET':
         pass
     elif request.method == 'PUT':

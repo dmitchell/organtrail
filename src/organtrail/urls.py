@@ -16,6 +16,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^organtrail/', organtrail.home),
-    url(r'^recipient/', organtrail.recipient),
-    url(r'^waiting-room/', organtrail.waiting_room)
+    url(r'^organtrail/recipient/(?P<provided_id>.*)$', organtrail.recipient),
+    url(r'^organtrail/waiting-room/', organtrail.waiting_room)
 )
