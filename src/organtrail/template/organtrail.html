@@ -6,6 +6,7 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" src="/static/js/underscore-min.js"></script>
 	<script type="text/javascript" src="/static/js/backbone-min.js"></script>
+	<script type="text/javascript" src="/static/js/recipient.js"></script>
 
     <!-- Bootstrap -->
     <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -13,6 +14,33 @@
     <script type="text/javascript">
     $(window).load(function(){
         $('#myModal').modal('show');
+    });
+    $(document).ready(function(){
+    	window.recipients = new Recipients([{
+    		id : 1,
+    		name : "John Doe",
+    		lifeExpenctancy : 30,
+    		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
+				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
+			age : 78,
+			rejectionProbability : 0.2,
+			doctor : null	    		 
+    	},
+    	{
+    		id : 2,
+    		name : "Cindy McArthur",
+    		lifeExpenctancy : 30,
+    		description : "Cindy's heart failed due to a severe illness.<br/>" +
+				"<p>Cindy has 2 young children...</p>",
+			age : 23,
+			rejectionProbability : 0.1,
+			doctor : null	    		 
+    	}]);
+    	window.recipientTable = new RecipientCollectionView({
+    		el : $("#patient-list"),
+    		collection : window.recipients
+    	});
+    	window.recipientTable.render();
     });
 </script>
 </head>
@@ -60,13 +88,7 @@
     						<th>Name</th>
     						<th>TTL</th>
     					</tr></thead>
-    					<tbody><tr class="patient-row">
-    						<td class="patient-pos">1</td>
-    						<td class="patient-name">John Doe</td>
-    						<td class="patient-ttl">7d</td></tr>
-							<tr><td>2</td>
-							<td>Charles River</td>
-							<td>12d</td></tr>
+    					<tbody id="patient-list">
     					</tbody>
     				</table>
     			</div>
