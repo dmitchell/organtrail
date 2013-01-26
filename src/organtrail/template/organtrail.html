@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Organ Trail</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" src="../static/js/underscore-min.js"></script>
-	<script type="text/javascript" src="../static/js/backbone-min.js"></script>
-	<script type="text/javascript" src="../static/js/recipient.js"></script>
-	<script type="text/javascript" src="../static/js/doctors.js"></script>
+	<script type="text/javascript" src="/static/js/underscore-min.js"></script>
+	<script type="text/javascript" src="/static/js/backbone-min.js"></script>
+	<script type="text/javascript" src="/static/js/recipient.js"></script>
+	<script type="text/javascript" src="/static/js/doctors.js"></script>
 
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -41,13 +41,100 @@
 			rejectionProbability : 0.1,
 			doctor : null,
 			money: 1000
+    	},
+    	{
+    		id : 3,
+    		name : "John Doe3",
+    		lifeExpenctancy : 30,
+    		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
+				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
+			age : 78,
+			rejectionProbability : 0.2,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 4,
+    		name : "Cindy McArthur4",
+    		lifeExpenctancy : 30,
+    		description : "Cindy's heart failed due to a severe illness.<br/>" +
+				"<p>Cindy has 2 young children...</p>",
+			age : 23,
+			rejectionProbability : 0.1,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 5,
+    		name : "John Doe5",
+    		lifeExpenctancy : 30,
+    		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
+				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
+			age : 78,
+			rejectionProbability : 0.2,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 6,
+    		name : "Cindy McArthur6",
+    		lifeExpenctancy : 30,
+    		description : "Cindy's heart failed due to a severe illness.<br/>" +
+				"<p>Cindy has 2 young children...</p>",
+			age : 23,
+			rejectionProbability : 0.1,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 7,
+    		name : "John Doe7",
+    		lifeExpenctancy : 30,
+    		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
+				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
+			age : 78,
+			rejectionProbability : 0.2,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 8,
+    		name : "Cindy McArthur8",
+    		lifeExpenctancy : 30,
+    		description : "Cindy's heart failed due to a severe illness.<br/>" +
+				"<p>Cindy has 2 young children...</p>",
+			age : 23,
+			rejectionProbability : 0.1,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 9,
+    		name : "John Doe9",
+    		lifeExpenctancy : 30,
+    		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
+				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
+			age : 78,
+			rejectionProbability : 0.2,
+			doctor : null,
+			money : 1000	    		 
+    	},
+    	{
+    		id : 10,
+    		name : "Cindy McArthur10",
+    		lifeExpenctancy : 30,
+    		description : "Cindy's heart failed due to a severe illness.<br/>" +
+				"<p>Cindy has 2 young children...</p>",
+			age : 23,
+			rejectionProbability : 0.1,
+			doctor : null,
+			money : 1000	    		 
     	}]);
     	window.recipientTable = new RecipientCollectionView({
     		el : $("#patient-list"),
     		collection : window.recipients
     	});
     	window.recipientTable.render();
-    	window.currentPlayer = 2; // which id from the recipient table is this player?
     	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
 		$("#player-doctor").html(window.recipients.get(window.currentPlayer).get("doctor"));
 		$("#player-money").html(window.recipients.get(window.currentPlayer).get("money"));
@@ -75,6 +162,7 @@
     	});
     	window.doctorTable.render();
     });
+ 	window.currentPlayer = {{player}}; // which id from the recipient table is this player?
 </script>
 </head>
 
