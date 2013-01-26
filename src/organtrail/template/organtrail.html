@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="/static/js/underscore-min.js"></script>
 	<script type="text/javascript" src="/static/js/backbone-min.js"></script>
 	<script type="text/javascript" src="/static/js/recipient.js"></script>
+	<script type="text/javascript" src="/static/js/doctors.js"></script>
 
     <!-- Bootstrap -->
     <link href="../static/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -137,6 +138,29 @@
     	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
 		$("#player-doctor").html(window.recipients.get(window.currentPlayer).get("doctor"));
 		$("#player-money").html(window.recipients.get(window.currentPlayer).get("money"));
+    
+    // Doctor render for doctor selection modal.
+    	window.doctors = new Doctors([{
+    		id : 1,
+    		name : "Gregory House",
+    		waitTime : 7,
+    		description : "The best doctor available. Extremely busy and expensive.",
+			rating : 80,
+			cost : 500,
+    	},
+    	{
+    		id : 2,
+    		name : "Nick Riviera",
+    		waitTime : 1,
+    		description : "Well... He's *technically* a doctor...",
+			rating : 20,
+			cost : 100,
+    	}]);
+    	window.doctorTable = new DoctorCollectionView({
+    		el : $("#doctor-list"),
+    		collection : window.doctors
+    	});
+    	window.doctorTable.render();
     });
  	window.currentPlayer = {{player}}; // which id from the recipient table is this player?
 </script>
@@ -169,13 +193,11 @@
     <h3>Select a doctor</h3>
   </div>
   <div class="modal-body">
-    <p>You are a patient on the waiting list for an organ transplant. There are only two things you can try to influence: you can look for ways to bump your position up on the list, or you can try and increase the existing donor pool so more organs are available for donation. Any actions you take, however, will cost you resources such as time and money - none of which you have much of. Will you be able to receive an organ before your own countdown timer expires?</p>
+    <p>Some doctors might be able to push your treatment faster, but they will also have longer waiting times and be more expensive. You can switch doctors later, but you will have to wait a few days until they can see you.</p>
     
-    <p>Organ Trail is designed to convey the anxieties of being an organ recipient, as well as the complexity of the organ donation system: specifically, how the whole system is built on a system of fragile public trust, and how events in the world can sway public opinion in life-changing ways for many people.</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Get Started</a>
-  </div>
+    <div id="doctor-list">
+  	</div>
+</div>
 </div>
 
 <!-- Main Interface -->
