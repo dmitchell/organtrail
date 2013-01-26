@@ -19,7 +19,7 @@ var Recipients = Backbone.Collection.extend({
 var RecipientCollectionView = Backbone.View.extend({
 	initialize: function() {
 		this.template = _.template('<tr class="patient-row">' +
-				'<td class="patient-pos"><%= index %></td>' +
+				'<td class="patient-pos"><%= index + 1 %></td>' +
 				'<td class="patient-name"><%= model.get("name") %></td>' +
 				'<td class="patient-ttl"><%= model.get("lifeExpectancy") %>d</td></tr>');
 	},
