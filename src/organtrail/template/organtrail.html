@@ -15,6 +15,9 @@
     $(window).load(function(){
         $('#introModal').modal('show');
     });
+    $(window).load(function(){
+        $('#characterModal').modal('show');
+    });
     $(document).ready(function(){
     	window.recipients = new Recipients([{
     		id : 1,
@@ -24,7 +27,8 @@
 				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
 			age : 78,
 			rejectionProbability : 0.2,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000
     	},
     	{
     		id : 2,
@@ -34,93 +38,105 @@
 				"<p>Cindy has 2 young children...</p>",
 			age : 23,
 			rejectionProbability : 0.1,
-			doctor : null	    		 
+			doctor : null,
+			money: 1000
     	},
     	{
     		id : 3,
-    		name : "John Doe",
+    		name : "John Doe3",
     		lifeExpenctancy : 30,
     		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
 				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
 			age : 78,
 			rejectionProbability : 0.2,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 4,
-    		name : "Cindy McArthur",
+    		name : "Cindy McArthur4",
     		lifeExpenctancy : 30,
     		description : "Cindy's heart failed due to a severe illness.<br/>" +
 				"<p>Cindy has 2 young children...</p>",
 			age : 23,
 			rejectionProbability : 0.1,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 5,
-    		name : "John Doe",
+    		name : "John Doe5",
     		lifeExpenctancy : 30,
     		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
 				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
 			age : 78,
 			rejectionProbability : 0.2,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 6,
-    		name : "Cindy McArthur",
+    		name : "Cindy McArthur6",
     		lifeExpenctancy : 30,
     		description : "Cindy's heart failed due to a severe illness.<br/>" +
 				"<p>Cindy has 2 young children...</p>",
 			age : 23,
 			rejectionProbability : 0.1,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 7,
-    		name : "John Doe",
+    		name : "John Doe7",
     		lifeExpenctancy : 30,
     		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
 				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
 			age : 78,
 			rejectionProbability : 0.2,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 8,
-    		name : "Cindy McArthur",
+    		name : "Cindy McArthur8",
     		lifeExpenctancy : 30,
     		description : "Cindy's heart failed due to a severe illness.<br/>" +
 				"<p>Cindy has 2 young children...</p>",
 			age : 23,
 			rejectionProbability : 0.1,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 9,
-    		name : "John Doe",
+    		name : "John Doe9",
     		lifeExpenctancy : 30,
     		description : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
 				"<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
 			age : 78,
 			rejectionProbability : 0.2,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	},
     	{
     		id : 10,
-    		name : "Cindy McArthur",
+    		name : "Cindy McArthur10",
     		lifeExpenctancy : 30,
     		description : "Cindy's heart failed due to a severe illness.<br/>" +
 				"<p>Cindy has 2 young children...</p>",
 			age : 23,
 			rejectionProbability : 0.1,
-			doctor : null	    		 
+			doctor : null,
+			money : 1000	    		 
     	}]);
     	window.recipientTable = new RecipientCollectionView({
     		el : $("#patient-list"),
     		collection : window.recipients
     	});
     	window.recipientTable.render();
+    	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
+		$("#player-doctor").html(window.recipients.get(window.currentPlayer).get("doctor"));
+		$("#player-money").html(window.recipients.get(window.currentPlayer).get("money"));
     });
  	window.currentPlayer = {{player}}; // which id from the recipient table is this player?
 </script>
@@ -145,6 +161,22 @@
   </div>
 </div>
  -->
+ 
+ <!-- Character Modal -->
+ <div class="modal hide fade" id="characterModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Select a doctor</h3>
+  </div>
+  <div class="modal-body">
+    <p>You are a patient on the waiting list for an organ transplant. There are only two things you can try to influence: you can look for ways to bump your position up on the list, or you can try and increase the existing donor pool so more organs are available for donation. Any actions you take, however, will cost you resources such as time and money - none of which you have much of. Will you be able to receive an organ before your own countdown timer expires?</p>
+    
+    <p>Organ Trail is designed to convey the anxieties of being an organ recipient, as well as the complexity of the organ donation system: specifically, how the whole system is built on a system of fragile public trust, and how events in the world can sway public opinion in life-changing ways for many people.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Get Started</a>
+  </div>
+</div>
 
 <!-- Main Interface -->
 
@@ -160,10 +192,10 @@
 			<div class="span12">
 				<table class="table">
 					<tr>
-						<td>Patient Name</td>
-						<td>Doctor Name</td>
+						<td id="player-name">&nbsp</td>
+						<td id="player-doctor">&nbsp</td>
 						<td>Disease Condition</td>
-						<td>$XXXX</td>
+						<td id="player-money">&nbsp</td>
 					</tr>
 				</table>
 				<hr>
