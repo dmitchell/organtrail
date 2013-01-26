@@ -12,21 +12,29 @@ var RecipientModel = Backbone.Model.extend({
 
 var Recipients = Backbone.Collection.extend({
 	url : "recipient",
-	model : RecipientModel
+	model : RecipientModel,
+	updateState : function(partialModels) {
+		_.each(partialModels, function(update) {
+			this.get(update.id).set(update);
+		}, this);
+	}
 });
 
 // populates the table
 var RecipientCollectionView = Backbone.View.extend({
 	initialize: function() {
 		this.template = _.template('<tr class="patient-row">' +
-				'<td class="patient-pos"><%= index + 1 %></td>' +
+				'<td class="patient-pos"><%= model.get("rank") %></td>' +
 				'<td class="patient-name"><%= model.get("name") %></td>' +
 				'<td class="patient-ttl"><%= model.get("lifeExpectancy") %>d</td></tr>');
+		this.listenTo(this.collection, 'change', this.render);
 	},
 	render : function() {
 		this.$el.html('');
+		var sortedCollection = this.collection.sortBy("rank");
 		for (var i = 0; i < this.collection.length; i++) {
-			this.$el.append(this.template({index : i, model : this.collection.at(i)}));
+			this.$el.append(this.template({model : sortedCollection[i]}));
 		}
 	}
-})
+});
+
