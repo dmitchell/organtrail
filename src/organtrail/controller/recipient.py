@@ -191,8 +191,8 @@ class Recipient(object):
             self.lifeExpectancy -= 1
             if self.lifeExpectancy == 0:
                 self.status = 'dead'
-                Recipient.active_players.remove(self)
                 Recipient.former_patients.append(self)
+                Recipient.active_players.remove(self)
         self.date += 1
         
     @classmethod
@@ -262,8 +262,8 @@ class Recipient(object):
             else:
                 selection = cls.active_players[4]
             
-            Recipient.active_players.remove(selection)
             Recipient.former_patients.append(selection)
+            Recipient.active_players.remove(selection)
 
             if (random.random() < selection.rejectionProbability):
                 selection.status = 'transplant-dead'
@@ -272,11 +272,11 @@ class Recipient(object):
                 
     @classmethod
     def sort_recipients(cls):
-        unsorted = cls.active_players
-        cls.active_players = []
-        for player in unsorted:
+        sort_list = []
+        for player in cls.active_players:
             index = 0
-            while index < len(cls.active_players) and cls.active_players[index].recipientListImpact > player.recipientListImpact:
+            while index < len(sort_list) and sort_list[index].rank > player.rank:
                 index += 1
             else:
-                cls.active_players.insert(index, player)
+                sort_list.insert(index, player)
+        cls.active_players = sort_list
