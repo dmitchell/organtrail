@@ -55,13 +55,13 @@ class Mechanics(object):
                 return "fail"
         else:
             return "fail"
-    
+        
     raw_mechanics = [{
                                 "id" : 1,
                                 "name" : "Get a Check-Up",
                                 "description" : "Getting tested might show your condition worsening.",
                                 "timeCost" : 1,
-                                "moneyCost" : 40,
+                                "moneyCost" : 50,
                                 "successRate" : .8,
                                 "donorPoolImpact" : 1,
                                 "recipientListImpact" : 500
@@ -71,18 +71,18 @@ class Mechanics(object):
                                 "name" : "Make a Donation",
                                 "description" : "Being friendly to the hospital could make the hospital be friendlier to you.",
                                 "timeCost" : 1,
-                                "moneyCost" : 1000,
-                                "successRate" : .6,
+                                "moneyCost" : 400,
+                                "successRate" : .5,
                                 "donorPoolImpact" : 1.2,
                                 "recipientListImpact" : 1000
                             },
                             {
                                 "id" : 3,
-                                "name" : "Switch Doctors",
+                                "name" : "Get a Second Opinion",
                                 "description" : "Maybe a different doctor can give you a different assessment on your condition.",
                                 "timeCost" : 3,
-                                "moneyCost" : 100,
-                                "successRate" : .5,
+                                "moneyCost" : 200,
+                                "successRate" : .4,
                                 "donorPoolImpact" : 1,
                                 "recipientListImpact" : 2000
                             },
@@ -92,7 +92,7 @@ class Mechanics(object):
                                 "description" : "Getting public exposure could make people sympathetic to you problem, or even increase the number of donors.",
                                 "timeCost" : 4,
                                 "moneyCost" : 0,
-                                "successRate" : .1,
+                                "successRate" : .2,
                                 "donorPoolImpact" : 1.3,
                                 "recipientListImpact" : 100
                             },
@@ -100,8 +100,8 @@ class Mechanics(object):
                                 "id" : 5,
                                 "name" : "Try Experimental Treatment",
                                 "description" : "Science keeps comping up with new treatments. Although risky, you might consider experimental treatment.",
-                                "timeCost" : 8,
-                                "moneyCost" : 40,
+                                "timeCost" : 7,
+                                "moneyCost" : 200,
                                 "successRate" : 0.1,
                                 "donorPoolImpact" : 1.1,
                                 "recipientListImpact" : 1000
@@ -113,16 +113,16 @@ class Mechanics(object):
                                 "timeCost" : 1,
                                 "moneyCost" : 200,
                                 "successRate" : 0,
-                                "donorPoolImpact" : 1,
+                                "donorPoolImpact" : 0,
                                 "recipientListImpact" : 0
                             },
                             {
                                 "id" : 7,
                                 "name" : "Search for Organs Abroad",
                                 "description" : "Maybe countries with different regulations might make it easier...",
-                                "timeCost" : 78,
-                                "moneyCost" : 0.2,
-                                "successRate" : 0,
+                                "timeCost" : 15,
+                                "moneyCost" : 600,
+                                "successRate" : 0.1,
                                 "donorPoolImpact" : 1,
                                 "recipientListImpact" : 1000
                             },
@@ -130,9 +130,9 @@ class Mechanics(object):
                                 "id" : 8,
                                 "name" : "Go to the Illegal Market",
                                 "description" : "You can try to buy an organ in the black market, but the risk is pretty high.",
-                                "timeCost" : 78,
-                                "moneyCost" : 0.2,
-                                "successRate" : 0,
+                                "timeCost" : 15,
+                                "moneyCost" : 750,
+                                "successRate" : 0.05,
                                 "donorPoolImpact" : 1,
                                 "recipientListImpact" : 1000
                             },
