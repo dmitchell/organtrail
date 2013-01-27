@@ -45,7 +45,10 @@ var GameState = Backbone.Model.extend({
 					window.recipients.reset(data.players);
 			        // update state
 					cacheThis.set('state', data.state);
-					$('#stagingModal').modal('show');
+					if (data.result == 'success') {
+						$('#moveSuccessModal').modal('show');
+					}
+					else $('#moveFailModal').modal('show');
 					cacheThis.pollWaitingRoom(cacheThis);
 		});
 	}
