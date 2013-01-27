@@ -153,5 +153,30 @@ class Recipient(object):
         cls.raw_players.remove(player)
         player_obj = cls(player)
         cls.active_players.append(player_obj)
+        print("chose " + str(player_obj.id))
         return player_obj
+
+    
+    @classmethod
+    def getRecipient(cls, provided_id):
+        if provided_id is None:
+            return None
+        provided_id = int(provided_id)
+        for player in cls.active_players:
+            if player.id == provided_id:
+                return player
+        return None
+
+    
+    @classmethod
+    def updateRecipient(cls, provided_id, updated):
+        player = cls.getRecipient(provided_id)
+        print player.id
+        for key, value in updated.items():
+            print(key + str(value))
+            setattr(player, key, value)
+        return player
+    
+    
+    
     

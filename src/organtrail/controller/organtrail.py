@@ -9,6 +9,7 @@ state = 'waiting-room'
 
 def home(request):
     global waiting_room_start
+    print('home')
     player = Recipient.choose()
     if waiting_room_start <= 0:
         waiting_room_start = time.time()
@@ -29,7 +30,10 @@ def waiting_room(request):
 
 def recipient(request, provided_id):
     if request.method == 'GET':
-        pass
-    elif request.method == 'PUT':
-        pass
+        return HttpResponse(json.dumps(Recipient.getRecipient(provided_id), default=lambda o: o.__dict__, ensure_ascii=False),
+                        content_type = "application/json")
+                     
+    elif request.method == 'PUT' or request.method == 'POST':
+        return HttpResponse(json.dumps(Recipient.updateRecipient(provided_id, json.loads(request.raw_post_data)), default=lambda o: o.__dict__, ensure_ascii=False),
+                        content_type = "application/json")
 
