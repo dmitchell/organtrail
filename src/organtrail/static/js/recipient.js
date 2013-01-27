@@ -28,6 +28,7 @@ var RecipientCollectionView = Backbone.View.extend({
 				'<td class="patient-name"><%= model.get("name") %></td>' +
 				'<td class="patient-ttl"><%= model.get("lifeExpectancy") %>d</td></tr>');
 		this.listenTo(this.collection, 'change', this.render);
+		this.listenTo(this.collection, 'reset', this.render);
 	},
 	render : function() {
 		this.$el.html('');

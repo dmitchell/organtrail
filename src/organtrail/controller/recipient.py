@@ -171,9 +171,7 @@ class Recipient(object):
     @classmethod
     def updateRecipient(cls, provided_id, updated):
         player = cls.getRecipient(provided_id)
-        print player.id
         for key, value in updated.items():
-            print(key + str(value))
             setattr(player, key, value)
         return player
     

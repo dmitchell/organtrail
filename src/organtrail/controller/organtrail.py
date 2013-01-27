@@ -19,12 +19,14 @@ def home(request):
     
 def waiting_room(request):
     # are we done waiting?
-    if state != 'waiting-room' and (time.time() - waiting_room_start > 45 or len(Recipient.active_players) > 3):
+    global state
+    if state == 'waiting-room' and (time.time() - waiting_room_start > 45 or len(Recipient.active_players) > 3):
         state = 'playing'
     return HttpResponse(json.dumps({ "state" : state,
-                                    "players" : [json.dumps(player.__dict__) for player in Recipient.active_players],
-                                    "donorPool" : 0.2
-                                    }),
+                                    "players" : Recipient.active_players,
+                                    "donorPool" : 0.2,
+                                    "timeRemaining" : time.time() - waiting_room_start
+                                    }, default=lambda o: o.__dict__, ensure_ascii=False),
                         content_type = "application/json")
                                 
 

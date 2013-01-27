@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^organtrail/$', organtrail.home),
     url(r'^organtrail/recipient/(?P<provided_id>.*)$', organtrail.recipient),
-    url(r'^organtrail/waiting-room/', organtrail.waiting_room)
+    url(r'^organtrail/state/waiting-room', organtrail.waiting_room)
 )

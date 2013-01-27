@@ -43,6 +43,10 @@ var DoctorCollectionView = Backbone.View.extend({
 		}
 	},
 	selectDoctor: function(event) {
-		window.recipients.get(window.currentPlayer).save( {'doctor' : parseInt($(event.currentTarget).data('id')) });
+		window.recipients.get(window.currentPlayer).save( {'doctor' : parseInt($(event.currentTarget).data('id')) },
+				{ success : function() {
+					// start the waiting room
+					window.state = new GameState();
+				}});
 	}
 })
