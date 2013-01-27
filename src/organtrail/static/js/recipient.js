@@ -32,7 +32,7 @@ var RecipientCollectionView = Backbone.View.extend({
 	},
 	render : function() {
 		this.$el.html('');
-		var sortedCollection = this.collection.sortBy("rank");
+		var sortedCollection = this.collection.sortBy(function(ele) { return -ele.get("rank"); });
 		for (var i = 0; i < this.collection.length; i++) {
 			this.$el.append(this.template({model : sortedCollection[i]}));
 		}

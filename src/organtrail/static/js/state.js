@@ -1,6 +1,6 @@
 var GameState = Backbone.Model.extend({
 	defaults : {
-		state : "waiting-room",
+		state : "staging-room",
 		players : window.recipients,
 		donorPool : 0.2,
 		timeRemaining : 0

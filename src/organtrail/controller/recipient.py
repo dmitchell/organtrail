@@ -146,7 +146,10 @@ class Recipient(object):
         self.doctor = initdict.get('doctor', None)
         self.rank = initdict.get('rank', 99)
         self.money = initdict.get('money', 1000)
-    
+        self.status = 'sick'
+        self.date = 0
+        self.cant_move_until = 0
+            
     @classmethod
     def choose(cls):
         player = random.choice(cls.raw_players)
@@ -175,6 +178,7 @@ class Recipient(object):
             setattr(player, key, value)
         return player
     
-    
-    
-    
+    def new_day(self):
+        if self.status == 'sick':
+            self.lifeExpectancy -= 1
+        self.date += 1
