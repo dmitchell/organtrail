@@ -79,6 +79,10 @@ var FormerCollectionView = Backbone.View.extend({
 		this.collection.each(function(patient) {
 			this.$el.append(this.template({model : patient}));
 			if (!this.playerDied && patient.get('id') === window.currentPlayer) {
+				this.playerDied = true;
+				$('#moveSuccessModal').modal('hide');
+				$('#moveFailModal').modal('hide');
+				
 				switch (patient.get('status')) {
 				case "dead":
 					$("#deathModal").modal('show');
