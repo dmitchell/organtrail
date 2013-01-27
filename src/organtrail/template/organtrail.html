@@ -168,6 +168,45 @@
   </div>
 </div>
 
+	<!-- Death Modal -->
+	<div class="modal hide fade" id="deathModal">
+		  <div class="modal-header">
+			<h3>Requiescat In Pace</h3>
+		  </div>
+		  <div class="modal-body">
+			<p class="pagination-centered"><img src="/static/img/danse_macabre.jpg"></p>
+			<p>Despite your best efforts, you were unable to get a transplant in time.</p>
+			
+			<p>You probably can't read this message because you're dead.</p>
+		  </div>
+	</div>
+	
+	<!-- Organ Transplant Success Modal -->
+	<div class="modal hide fade" id="winModal">
+		  <div class="modal-header">
+			<h3>Congratulations!</h3>
+		  </div>
+		  <div class="modal-body">
+		  	<p class="pagination-centered"><img src="/static/img/carnaval.jpg"></p>
+			<p>You've managed to navigate the organ trail and get a successful transplant.</p>
+			
+			<p>Go. Have a party! You won. You get to live.</p>
+		  </div>
+	</div>
+	
+	<!-- Organ Transplant Fail Modal -->
+	<div class="modal hide fade" id="rejectionModal">
+		  <div class="modal-header">
+			<h3>Requiescat In Pace</h3>
+		  </div>
+		  <div class="modal-body">
+		  	<p class="pagination-centered"><img src="/static/img/danse_macabre.jpg"></p>
+			<p>Unlikely as it is, you were able to get a transplant, but you're body rejected the new organ.</p>
+			
+			<p>You sadly have no more time to wait for a new organ.</p>
+		  </div>
+		  </div>
+	</div>
 
 <!-- Externality Modals -->
 <div class="modal hide fade" id="traincrashModal">
@@ -453,7 +492,9 @@
 	<div class="container">
 		<div class="navbar navbar-inverse">
 		  <div class="navbar-inner">
-			<a class="brand" href="#"><img src="/static/img/organtrail-logo.png"></a>
+		  	<div class="organtrail-logo">
+				<a class="brand" href="#">Organ Trail</a>
+			</div>
 			<ul class="nav pull-right">
 			  <li><a href="#aboutModal" data-toggle="modal">About</a></li>
 			</ul>
