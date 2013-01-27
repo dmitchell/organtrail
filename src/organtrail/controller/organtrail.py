@@ -23,6 +23,7 @@ def waiting_room(request):
     global state
     if state == 'staging-room' and (time.time() - waiting_room_start > 45 or len(Recipient.active_players) > 3):
         state = 'playing'
+        Mechanics.new_day()
     return HttpResponse(json.dumps({ "state" : state,
                                     "players" : Recipient.active_players,
                                     "donorPool" : int(Mechanics.donor_pool * 100),
@@ -43,12 +44,14 @@ def recipient(request, provided_id):
 
 def move(request, user_id, move_id):
     player = Recipient.getRecipient(int(user_id))
+    print(player)
     mechanic = Mechanics.get_mechanic(int(move_id))
     response = mechanic.execute_move(player)
     # Determine if state should change (all players on same move # or time out or done)
     return HttpResponse(json.dumps({"state" : state,
                                     "players" : Recipient.active_players,
                                     "donorPool" : int(Mechanics.donor_pool * 100),
-                                    "result" : response}))
+                                    "result" : response}, default=lambda o: o.__dict__, ensure_ascii=False),
+                        content_type = "application/json")
 
 

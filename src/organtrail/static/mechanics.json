@@ -77,4 +77,14 @@
 			"successRate" : 0,
 			"donorPoolImpact" : 1,
 			"recipientListImpact" : 1000
+    	},
+{
+    		"id" : 9,
+    		"name" : "Organize an Organ Drive",
+    		"description" : "If you can encourage friends and family to register as organ donors, it will increase the likelihood that organs will be available to patients on the list.",
+			"timeCost" : 6,
+			"moneyCost" : 100,
+			"successRate" : 0.7,
+			"donorPoolImpact" : 1.3,
+			"recipientListImpact" : 100
     	}]
