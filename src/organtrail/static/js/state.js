@@ -20,6 +20,7 @@ var GameState = Backbone.Model.extend({
 	},
 	waitingRoom : function(state) {
 		window.recipients.reset(state.get('players'));
+		window.formerPatients.reset(state.get('formerPatients'));
 		if (state.get('state') === "staging-room" || state.get('state') === 'day-wait') {
 			window.setTimeout(function() { 
 				state.pollWaitingRoom(state);
@@ -40,6 +41,7 @@ var GameState = Backbone.Model.extend({
 					dbar.width(data.donorPool + "%");
 					dbar.html(data.donorPool + "%");
 					// update rankings
+					window.formerPatients.reset(data.formerPatients);
 					window.recipients.reset(data.players);
 			        // update state
 					cacheThis.set('state', data.state);

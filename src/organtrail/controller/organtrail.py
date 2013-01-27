@@ -10,7 +10,8 @@ def home(request):
     return render_to_response('organtrail.html', 
                               { "player" : player.id,
                                "donorPool" : int(Mechanics.donor_pool * 100),
-                               "recipients" : json.dumps(Recipient.active_players, default=lambda o: o.__dict__, ensure_ascii=False)})
+                               "recipients" : json.dumps(Recipient.active_players, default=lambda o: o.__dict__, ensure_ascii=False),
+                               "formerPatients" : json.dumps(Recipient.former_patients, default=lambda o: o.__dict__, ensure_ascii=False)})
     
 def waiting_room(request, user_id):
     # are we done waiting?
@@ -18,6 +19,7 @@ def waiting_room(request, user_id):
     return HttpResponse(json.dumps({ "state" : player.game_state(),
                                     "players" : Recipient.active_players,
                                     "donorPool" : int(Mechanics.donor_pool * 100),
+                                    "formerPatients" : Recipient.former_patients,
                                     "timeRemaining" : player.remaining_wait_time()
                                     }, 
                                    default=lambda o: o.__dict__, ensure_ascii=False),
@@ -43,6 +45,7 @@ def move(request, user_id, move_id):
     return HttpResponse(json.dumps({"state" : player.game_state(),
                                     "players" : Recipient.active_players,
                                     "donorPool" : int(Mechanics.donor_pool * 100),
+                                    "formerPatients" : Recipient.former_patients,
                                     "result" : response}, default=lambda o: o.__dict__, ensure_ascii=False),
                         content_type = "application/json")
 

@@ -61,11 +61,17 @@
     	window.doctorTable.render();
     	
     	window.recipients = new Recipients({% autoescape off %} {{recipients}} {% endautoescape %});
+    	window.formerPatients = new Recipients({% autoescape off %} {{formerPatients}} {% endautoescape %});
     	window.recipientTable = new RecipientCollectionView({
     		el : $("#patient-list"),
     		collection : window.recipients
     	});
     	window.recipientTable.render();
+    	window.formerPatientTable = new FormerCollectionView({
+    		el : $("#former-patient-list"),
+    		collection : window.formerPatients
+    	});
+    	window.formerPatientTable.render();
     	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
     
     	
@@ -541,6 +547,20 @@
 								<th>TTL</th>
 							</tr></thead>
 							<tbody id="patient-list">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="span4"> <!-- Former pat List -->
+						<h4>Former Patient List</h4>
+						<table class="table table-striped table-bordered table-hover table-condensed patient-list">
+							<thead><tr>
+								<th>Name</th>
+								<th>Result</th>
+							</tr></thead>
+							<tbody id="former-patient-list">
 							</tbody>
 						</table>
 					</div>

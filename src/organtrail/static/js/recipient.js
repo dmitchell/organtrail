@@ -32,6 +32,9 @@ var RecipientCollectionView = Backbone.View.extend({
 	},
 	updatePlayer : function() {
 		var player = window.recipients.get(window.currentPlayer);
+		if (player == null) {
+			player = window.formerPatients.get(window.currentPlayer);
+		}
 		if (player.has("doctor")) {
 			var doctor = window.doctors.get(player.get("doctor"));
 			$("#player-doctor").html(doctor.get("name"));
@@ -46,6 +49,23 @@ var RecipientCollectionView = Backbone.View.extend({
 		}
 		// update current user's cash
 		this.updatePlayer();
+	}
+});
+
+// populates the table
+var FormerCollectionView = Backbone.View.extend({
+	initialize: function() {
+		this.template = _.template('<tr class="patient-row">' +
+				'<td class="patient-name"><%= model.get("name") %></td>' +
+				'<td class="patient-name"><%= model.get("status") %></td></tr>');
+		this.listenTo(this.collection, 'change', this.render);
+		this.listenTo(this.collection, 'reset', this.render);
+	},
+	render : function() {
+		this.$el.html('');
+		this.collection.each(function(patient) {
+			this.$el.append(this.template({model : patient}));
+		}, this);
 	}
 });
 

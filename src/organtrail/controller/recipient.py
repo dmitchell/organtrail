@@ -134,6 +134,7 @@ class Recipient(object):
         }]
     
     active_players = []
+    former_patients = []
     day_start_time = None
     start_time_date = Mechanics.day
     
@@ -172,6 +173,9 @@ class Recipient(object):
         for player in cls.active_players:
             if player.id == provided_id:
                 return player
+        for player in cls.former_patients:
+            if player.id == provided_id:
+                return player
         return None
 
     
@@ -185,12 +189,16 @@ class Recipient(object):
     def new_day(self):
         if self.status == 'sick':
             self.lifeExpectancy -= 1
+            if self.lifeExpectancy < 0:
+                self.status = 'dead'
+                Recipient.active_players.remove(self)
+                Recipient.former_patients.append(self)
         self.date += 1
         
     @classmethod
     def waiting_for_move(cls):
         for player in cls.active_players:
-            if player.cant_move_until <= Mechanics.day:
+            if player.cant_move_until <= Mechanics.day and player.status == 'sick':
                 return True
         return False
         
@@ -200,18 +208,14 @@ class Recipient(object):
             
         if Mechanics.day < 0:
             if self.remaining_wait_time() <= 0 or len(Recipient.active_players) > 3:
-                Mechanics.new_day()
-                for player in Recipient.active_players:
-                    player.new_day()
+                Recipient.end_day()
                 return self.game_state()
             else:
                 return "staging-room"
         elif Mechanics.day < self.cant_move_until:
             # see if we should trigger the day change
             if self.remaining_wait_time() <= 0 or not Recipient.waiting_for_move():
-                Mechanics.new_day()
-                for player in Recipient.active_players:
-                    player.new_day()
+                Recipient.end_day()
                 return self.game_state()
             else:
                 return "day-wait"
@@ -223,3 +227,56 @@ class Recipient(object):
             return 45 - time.time() + Recipient.day_start_time
         else:
             return 30 - time.time() + Recipient.day_start_time
+        
+    @classmethod
+    def end_day(cls):
+        Mechanics.new_day()
+        for player in Recipient.active_players:
+            player.new_day()
+        # anyone left?
+        if len(Recipient.active_players) == 0:
+            return
+        # allocate organ
+        factor = Mechanics.donor_pool * max(5, len(Recipient.active_players))/30.0
+        if (random.random() <= factor):
+            # sort recipients by recipientListImpact
+            cls.sort_recipients()
+            # HACK: tickets over first 5: 10, 6, 4, 2, 1 = 23
+            ticket = random.randrange(23)
+            if ticket < 10:
+                selection = cls.active_players[0]
+            elif len(Recipient.active_players) < 2:
+                return
+            elif ticket < 16:
+                selection = cls.active_players[1]
+            elif len(Recipient.active_players) < 3:
+                return
+            elif ticket < 20:
+                selection = cls.active_players[2]
+            elif len(Recipient.active_players) < 4:
+                return
+            elif ticket < 22:
+                selection = cls.active_players[3]
+            elif len(Recipient.active_players) < 5:
+                return
+            else:
+                selection = cls.active_players[4]
+            
+            Recipient.active_players.remove(selection)
+            Recipient.former_patients.append(selection)
+
+            if (random.random() < selection.rejectionProbability):
+                selection.status = 'transplant-dead'
+            else:
+                selection.status = 'transplant-healed'
+                
+    @classmethod
+    def sort_recipients(cls):
+        unsorted = cls.active_players
+        cls.active_players = []
+        for player in unsorted:
+            index = 0
+            while index < len(cls.active_players) and cls.active_players[index].recipientListImpact > player.recipientListImpact:
+                index += 1
+            else:
+                cls.active_players.insert(index, player)
