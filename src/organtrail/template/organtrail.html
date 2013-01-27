@@ -21,16 +21,6 @@
    		});
     });
     $(document).ready(function(){
-    	window.recipients = new Recipients({% autoescape off %} {{recipients}} {% endautoescape %});
-    	window.recipientTable = new RecipientCollectionView({
-    		el : $("#patient-list"),
-    		collection : window.recipients
-    	});
-    	window.recipientTable.render();
-    	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
-		$("#player-doctor").html(window.recipients.get(window.currentPlayer).get("doctor"));
-		$("#player-money").html(window.recipients.get(window.currentPlayer).get("money"));
-    
     // Doctor render for doctor selection modal.
     	window.doctors = new Doctors([{
     		id : 1,
@@ -69,6 +59,16 @@
     		collection : window.doctors
     	});
     	window.doctorTable.render();
+    	
+    	window.recipients = new Recipients({% autoescape off %} {{recipients}} {% endautoescape %});
+    	window.recipientTable = new RecipientCollectionView({
+    		el : $("#patient-list"),
+    		collection : window.recipients
+    	});
+    	window.recipientTable.render();
+    	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
+    
+    	
     });
  	window.currentPlayer = {{player}}; // which id from the recipient table is this player?
 </script>
@@ -255,7 +255,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Get a Check Up</a>
+    <a href="#" class="btn btn-primary" data-id="1" data-dismiss="modal">Get a Check Up</a>
   </div>
 </div>
 
@@ -277,7 +277,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Make a Donation</a>
+    <a href="#" class="btn btn-primary" data-id="2" data-dismiss="modal">Make a Donation</a>
   </div>
 </div>
 
@@ -299,7 +299,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Find a New Doctor</a>
+    <a href="#" class="btn btn-primary" data-id="3" data-dismiss="modal">Find a New Doctor</a>
   </div>
 </div>
 
@@ -321,7 +321,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Get News Coverage</a>
+    <a href="#" class="btn btn-primary" data-id="4" data-dismiss="modal">Get News Coverage</a>
   </div>
 </div>
 
@@ -343,7 +343,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Try Experimental Treatment</a>
+    <a href="#" class="btn btn-primary" data-id="5" data-dismiss="modal">Try Experimental Treatment</a>
   </div>
 </div>
 
@@ -365,7 +365,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Organize and Organ Drive</a>
+    <a href="#" class="btn btn-primary" data-id="9" data-dismiss="modal">Organize an Organ Drive</a>
   </div>
 </div>
 
@@ -388,7 +388,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Try Homeopathic Medicine</a>
+    <a href="#" class="btn btn-primary" data-id="6" data-dismiss="modal">Try Homeopathic Medicine</a>
   </div>
 </div>
 
@@ -410,7 +410,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Travel Abroad</a>
+    <a href="#" class="btn btn-primary" data-id="7" data-dismiss="modal">Travel Abroad</a>
   </div>
 </div>
 
@@ -432,7 +432,7 @@
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Close</a>
-    <a href="#" class="btn btn-primary" data-dismiss="modal">Try the Black Market</a>
+    <a href="#" class="btn btn-primary" data-id="8" data-dismiss="modal">Try the Black Market</a>
   </div>
 </div>
 
