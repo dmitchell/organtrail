@@ -15,7 +15,7 @@ class Recipient(object):
     raw_players = [{
             "id" : 1,
             "name" : "Jim Devin",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
             "age" : 78,
@@ -27,7 +27,7 @@ class Recipient(object):
         {
             "id" : 2,
             "name" : "Cindy McArthur",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
             "age" : 23,
@@ -39,7 +39,7 @@ class Recipient(object):
         {
             "id" : 3,
             "name" : "Alan Merkel",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
             "age" : 78,
@@ -51,7 +51,7 @@ class Recipient(object):
         {
             "id" : 4,
             "name" : "Julie Hunter",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
             "age" : 23,
@@ -63,7 +63,7 @@ class Recipient(object):
         {
             "id" : 5,
             "name" : "Steve Black",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
             "age" : 78,
@@ -75,7 +75,7 @@ class Recipient(object):
         {
             "id" : 6,
             "name" : "Alana Daniels",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
             "age" : 23,
@@ -87,7 +87,7 @@ class Recipient(object):
         {
             "id" : 7,
             "name" : "Aaron Woods",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
             "age" : 78,
@@ -99,7 +99,7 @@ class Recipient(object):
         {
             "id" : 8,
             "name" : "Lucy Diamonds",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
             "age" : 23,
@@ -111,7 +111,7 @@ class Recipient(object):
         {
             "id" : 9,
             "name" : "Calvin Hobbes",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
             "age" : 78,
@@ -123,7 +123,7 @@ class Recipient(object):
         {
             "id" : 10,
             "name" : "Frida Heine",
-            "lifeExpectancy" : 30,
+            "lifeExpectancy" : 31,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
             "age" : 23,
@@ -144,7 +144,7 @@ class Recipient(object):
         '''
         self.id = initdict.get('id', None)
         self.name = initdict.get('name', "")
-        self.lifeExpectancy = initdict.get('lifeExpectancy', 30)
+        self.lifeExpectancy = initdict.get('lifeExpectancy', 31)
         self.description = initdict.get('description', "")
         self.age = initdict.get('age', 100)
         self.rejectionProbability = initdict.get('rejectionProbability', 0.2)
@@ -189,7 +189,7 @@ class Recipient(object):
     def new_day(self):
         if self.status == 'sick':
             self.lifeExpectancy -= 1
-            if self.lifeExpectancy < 0:
+            if self.lifeExpectancy == 0:
                 self.status = 'dead'
                 Recipient.active_players.remove(self)
                 Recipient.former_patients.append(self)

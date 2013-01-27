@@ -1,6 +1,5 @@
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-import time
 import json
 from recipient import Recipient
 from mechanics import Mechanics

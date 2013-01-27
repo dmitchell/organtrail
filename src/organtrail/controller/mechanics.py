@@ -42,17 +42,21 @@ class Mechanics(object):
         
     def execute_move(self, player):
         print(str(player.cant_move_until) + " " + str(Mechanics.day))
-        if player.cant_move_until <= Mechanics.day and player.money >= self.moneyCost:
-            player.cant_move_until += self.timeCost
-            player.money -= self.moneyCost
-            dice = random.random()
-            print(str(dice) + " " + str(self.successRate))
-            if dice < self.successRate:
-                Mechanics.donor_pool *= self.donorPoolImpact
-                player.rank += self.recipientListImpact
-                return "success"
+        if player.cant_move_until <= Mechanics.day: 
+            if player.money >= self.moneyCost:
+                player.cant_move_until += self.timeCost
+                player.money -= self.moneyCost
+                dice = random.random()
+                print(str(dice) + " " + str(self.successRate))
+                if dice < self.successRate:
+                    Mechanics.donor_pool *= self.donorPoolImpact
+                    player.rank += self.recipientListImpact
+                    return "success"
+                else:
+                    return "fail"
             else:
-                return "fail"
+                player.cant_move_until += 1
+                return "fail"    
         else:
             return "fail"
         
