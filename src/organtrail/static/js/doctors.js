@@ -28,9 +28,9 @@ var DoctorCollectionView = Backbone.View.extend({
     					'<tbody>' +
     						'<tr><td rowspan="3" id="doctor-description" width="70%"><%= model.get("description") %></td>' +
     						'<td width="25%">Waiting List</td>' +
-    						'<td id="doctor-waitTime" width="5%"><%= model.get("waitTime") %></td></tr>' +
-    						'<tr><td>Success Rate</td><td class="id-rating">75%</td></tr>' +
-    						'<tr><td>Cost</td><td id="doctor-cost"><%= model.get("cost") %></td></tr>' +
+    						'<td id="doctor-waitTime" width="5%"><%= model.get("waitTime") %>d</td></tr>' +
+    						'<tr><td>Success Rate</td><td class="id-rating"><%= model.get("rating") %>%</td></tr>' +
+    						'<tr><td>Cost</td><td id="doctor-cost">$<%= model.get("cost") %></td></tr>' +
     						'</tbody>' +
     				'</table>' +
     			'</div>' +

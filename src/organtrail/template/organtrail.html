@@ -14,11 +14,11 @@
     <link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
     <script src="/static/js/bootstrap.js"></script>
     <script type="text/javascript">
-   //  $(window).load(function(){
-//         $('#introModal').modal('show');
-//     });
-    $(window).load(function(){
-        $('#doctorModal').modal('show');
+	$(window).load(function(){
+        $('#introModal').modal('show');
+        $('#intro-dismiss').click(function(){
+        	$('#doctorModal').modal('show');
+   		});
     });
     $(document).ready(function(){
     	window.recipients = new Recipients({% autoescape off %} {{recipients}} {% endautoescape %});
@@ -38,7 +38,7 @@
     		waitTime : 7,
     		description : "The best doctor available. Extremely busy and expensive.",
 			rating : 80,
-			cost : 500,
+			cost : 400,
     	},
     	{
     		id : 2,
@@ -47,6 +47,22 @@
     		description : "Well... He's *technically* a doctor...",
 			rating : 20,
 			cost : 100,
+    	},
+    	{
+    		id : 3,
+    		name : "Leonard McCoy",
+    		waitTime : 5,
+    		description : "Dammit, Jim, he's a doctor, not a miracle worker!",
+			rating : 60,
+			cost : 300,
+    	},
+    	{
+    		id : 4,
+    		name : "John Zoidberg",
+    		waitTime : 3,
+    		description : "Limited, yet convincing understanding of human medicine.",
+			rating : 40,
+			cost : 200,
     	}]);
     	window.doctorTable = new DoctorCollectionView({
     		el : $("#doctor-list"),
@@ -62,9 +78,12 @@
 
 <!-- 
 
+
 		Lots of Modals:
 			- Instructions Modal
 			- Doctor Selection Modal
+			- Staging Room
+			- Day Cycle
 			- Externalities Modals
 			- Mechanics Modals
 
@@ -78,17 +97,20 @@
     <h3>Welcome to Organ Trail</h3>
   </div>
   <div class="modal-body">
-    <p>You are a patient on the waiting list for an organ transplant. There are only two things you can try to influence: you can look for ways to bump your position up on the list, or you can try and increase the existing donor pool so more organs are available for donation. Any actions you take, however, will cost you resources such as time and money - none of which you have much of. Will you be able to receive an organ before your own countdown timer expires?</p>
+    <p><strong>Bad news: you need an organ transplant.</strong> And they don't exactly grow in trees, you know? So unless you can figure out a way to find one in the next 30 days, it's game over for you.</p>
     
-    <p>Organ Trail is designed to convey the anxieties of being an organ recipient, as well as the complexity of the organ donation system: specifically, how the whole system is built on a system of fragile public trust, and how events in the world can sway public opinion in life-changing ways for many people.</p>
+    <p>Even worse, turns out there's very little you can do about it. You can look for ways to bump your position up on the transplant waiting list, maybe if you can show your condition is actually worse than originally thought. Or you can try and increase the existing donor pool so more organs are available for donation, thus increasing your chances. But anything you do will cost you either time or money - none of which you have much of.</p> 
+    
+    <p>Will you be able to receive an organ before your countdown timer expires?</p>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn" id="intro-dismiss" data-dismiss="modal">Close</a>
   </div>
 </div>
+
  
- <!-- Doctor Modal -->
- <div class="modal hide fade" id="doctorModal">
+	<!-- Doctor Modal -->
+	<div class="modal hide fade" id="doctorModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
     <h3>Select a doctor</h3>
@@ -100,6 +122,35 @@
   	</div>
 </div>
 </div>
+
+
+	<!-- Staging Room Modal -->
+	<div class="modal hide fade" id="stagingModal">
+  <div class="modal-header">
+    <h3>Waiting for other patients...</h3>
+  </div>
+  <div class="modal-body">
+    <p>Please wait for a few seconds until all players are connected...</p>
+    <div class="progress progress-striped active">
+  		<div class="bar" style="width: 100%;"></div>
+	</div>
+  </div>
+</div>
+
+
+	<!-- Day Cycle Modal -->
+	<div class="modal hide fade" id="daycycleModal">
+  <div class="modal-header">
+    <h3>Waiting for other patients...</h3>
+  </div>
+  <div class="modal-body">
+    <p>Please wait for a few seconds for other players to make decisions...</p>
+    <div class="progress progress-striped active">
+  		<div class="bar" style="width: 100%;"></div>
+	</div>
+  </div>
+</div>
+
 
 <!-- Externality Modals -->
 <div class="modal hide fade" id="traincrashModal">
@@ -239,6 +290,21 @@
   </div>
 </div>
 
+<div class="modal hide fade" id="organdriveModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Organize an Organ Drive</h3>
+  </div>
+  <div class="modal-body">
+    <p><img class="mechanic-button pull-left" src="../static/img/organdrive.png">If you can encourage friends and family to register as organ donors, it will increase the likelihood that organs will be available to patients on the list.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <a href="#" class="btn btn-primary" data-dismiss="modal">Organize and Organ Drive</a>
+  </div>
+</div>
+
+
 <div class="modal hide fade" id="homeopathyModal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -294,7 +360,7 @@
 <!-- Main Interface -->
 
 	<div class="container">
-		<div class="navbar navbar-inverse navbar-fixe-top">
+		<div class="navbar navbar-inverse">
 		  <div class="navbar-inner">
 			<a class="brand" href="#">Organ Trail</a>
 			<ul class="nav pull-right">
@@ -329,8 +395,7 @@
 					<tr>
 						<td id="player-name">&nbsp</td>
 						<td id="player-doctor">&nbsp</td>
-						<td>Disease Condition</td>
-						<td id="player-money">&nbsp</td>
+						<td id="player-money">$</td>
 					</tr>
 				</table>
 				<hr>
@@ -353,14 +418,19 @@
     					<div class="span2">
     						<a href="#switchdoctorModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/doctor.png"></a>
     					</div>
-    					<div class="span2">
-    						<a href="#coverageModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/coverage.png"></a>
-    					</div>
     				</div>
     				<div class="row">
     					<div class="span2">
+    						<a href="#coverageModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/coverage.png"></a>
+    					</div>
+    					<div class="span2">
     						<a href="#experimentalModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/experimental.png"></a>  					
     					</div>
+    					<div class="span2">
+    						<a href="#organdriveModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/organdrive.png"></a>
+    					</div>
+    				</div>
+    				<div class="row">
     					<div class="span2">
     						<a href="#homeopathyModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/homeopathy.png"></a>
     					</div>
@@ -369,14 +439,16 @@
     					</div>
     					<div class="span2">
     						<a href="#illegalModal" data-toggle="modal"><img class="mechanic-button" src="../static/img/illegal.png"></a>
-    					</div>
     				</div>
-    				<a href="#traincrashModal" data-toggle="modal">Train Crash Modal</a>
+    			</div>
+    			<!-- 
+	<a href="#traincrashModal" data-toggle="modal">Train Crash Modal</a>
     				<a href="#newsitemModal" data-toggle="modal">News Item Modal</a>
     				<a href="#mafiabustModal" data-toggle="modal">Mafia Bust Modal</a>
     				<a href="#extremeweatherModal" data-toggle="modal">Extreme Weather Modal</a>
     				<a href="#stemcellsModal" data-toggle="modal">Stem Cells Modal</a>
     				<a href="#newdoctorModal" data-toggle="modal">New Doctor Modal</a>
+ -->
     			</div>
     		</div>
     	</div>
@@ -453,7 +525,7 @@
     			<div class="span4"> <!-- Donor Pool -->
     				<h4>Donor Pool</h4>
     				<div class="progress progress-striped active">
-  						<div class="bar" style="width: {{donorPool}}%;">{{donorPool}}%</div>
+  						<div id="donor-bar" class="bar" style="width: {{donorPool}}%;">{{donorPool}}%</div>
 					</div>
 				</div>
 			</div>

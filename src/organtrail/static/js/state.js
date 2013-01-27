@@ -9,6 +9,7 @@ var GameState = Backbone.Model.extend({
 		return "state/" + this.get('state');
 	},
 	initialize : function() {
+		$('#stagingModal').modal('show');
 		this.pollWaitingRoom(this);
 	},
 	pollWaitingRoom : function(state) {
@@ -26,6 +27,7 @@ var GameState = Backbone.Model.extend({
 		}
 		else {
 			console.log(state.get('state'));
+			$('#stagingModal').modal('hide');
 			state.getMove();
 		}
 	},
