@@ -40,6 +40,18 @@ var RecipientCollectionView = Backbone.View.extend({
 			$("#player-doctor").html(doctor.get("name"));
 		}
 		$("#player-money").html("$" + player.get("money"));
+		if (player.get("lifeExpectancy") > 20) {
+				$("#player-ttl").html('<span class="badge badge-success">' + player.get("lifeExpectancy") + 'd' + '</span>');
+				$("#life-bar").html('<div class="bar bar-success" style="width: ' + (player.get("lifeExpectancy")*100/30) + '%;">' + player.get("lifeExpectancy") + 'd</div>');
+				}
+			else if (player.get("lifeExpectancy") <= 20 && player.get("lifeExpectancy") > 10) {
+				$("#player-ttl").html('<span class="badge badge-warning">' + player.get("lifeExpectancy") + 'd' + '</span>');
+				$("#life-bar").html('<div class="bar bar-warning" style="width: ' + (player.get("lifeExpectancy")*100/30) + '%;">' + player.get("lifeExpectancy") + 'd</div>');
+				}
+			else {
+				$("#player-ttl").html('<span class="badge badge-important">' + player.get("lifeExpectancy") + 'd' + '</span>');
+				$("#life-bar").html('<div class="bar bar-danger" style="width: ' + (player.get("lifeExpectancy")*100/30) + '%;">' + player.get("lifeExpectancy") + 'd</div>');
+				}
 	},
 	render : function() {
 		this.$el.html('');

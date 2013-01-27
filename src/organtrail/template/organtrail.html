@@ -73,7 +73,6 @@
     	});
     	window.formerPatientTable.render();
     	$("#player-name").html(window.recipients.get(window.currentPlayer).get("name"));
-    
     	
     });
  	window.currentPlayer = {{player}}; // which id from the recipient table is this player?
@@ -546,6 +545,7 @@
 								<td id="player-name">&nbsp</td>
 								<td id="player-doctor">&nbsp</td>
 								<td id="player-money">&nbsp</td>
+								<td id="player-ttl">&nbsp</td>
 							</tr>
 						</table>
 						<hr>
@@ -692,11 +692,23 @@
 					</div>
 				</div>
 				-->
+				
+				<!-- Donor Pool -->
 				<div class="row">
-					<div class="span4"> <!-- Donor Pool -->
+					<div class="span4"> 
 						<h4>Donor Pool</h4>
 						<div class="progress progress-striped active">
 							<div id="donor-bar" class="bar" style="width: {{donorPool}}%;">{{donorPool}}%</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Life Expectancy -->
+				<div class="row">
+					<div class="span4"> 
+						<h4>Life Expectancy</h4>
+						<div class="progress">
+							  <div id="life-bar">&nbsp</div>
 						</div>
 					</div>
 				</div>
