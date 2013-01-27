@@ -1,7 +1,6 @@
 [{
     		id : 1,
     		name : "Train Crash",
-    		description : 30,
     		description : "An unfortunate accident yesterday has resulted in the unexpected death of hundreds of people.",
 			timeCost : 78,
 			moneyCost : 0.2,
@@ -12,7 +11,6 @@
  {
     		id : 2,
     		name : "News Piece",
-    		description : 30,
     		description : "A recently published news article highlighting the plight of waitlisted patients has resulted in increased numbers of people registering as organ donors.",
 			timeCost : 78,
 			moneyCost : 0.2,
@@ -23,7 +21,6 @@
 {
     		id : 3,
     		name : "Mafia Bust",
-    		description : 30,
     		description : "A recent police investigation has uncovered an organ trafficking ring and people buying their way up the organ waitlist. As a result, there number of people registering as donors has shrunk.",
 			timeCost : 78,
 			moneyCost : 0.2,
@@ -34,7 +31,6 @@
 {
     		id : 4,
     		name : "Extreme Weather",
-    		description : 30,
     		description : "Extreme weather conditions throughout last season resulted in an increased number of deaths.",
 			timeCost : 78,
 			moneyCost : 0.2,
@@ -45,7 +41,6 @@
 {
     		id : 5,
     		name : "Scientific Breakthrough",
-    		description : 30,
     		description : "Recent research with stem cell therapies has increased the available number of organs for patients waiting for a transplant.",
 			timeCost : 78,
 			moneyCost : 0.2,
@@ -56,11 +51,10 @@
 {
     		id : 6,
     		name : "New Doctor Arrival",
-    		description : 30,
-    		description : "Hey, you never know.",
+    		description : "The recent hiring of a new doctor in the area has expanded options for quality treatment.",
 			timeCost : 78,
 			moneyCost : 0.2,
 			successRate : null,
 			donorPoolImpact : 1,
 			recipientListImpact : 1000
-    	},
+    	}]
