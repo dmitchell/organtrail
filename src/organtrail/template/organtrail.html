@@ -157,16 +157,16 @@
 
 	<!-- Day Cycle Modal -->
 	<div class="modal hide fade" id="daycycleModal">
-  <div class="modal-header">
-    <h3>Waiting for other patients...</h3>
-  </div>
-  <div class="modal-body">
-    <p>Please wait for a few seconds for other players to make decisions...</p>
-    <div class="progress progress-striped active">
-  		<div class="bar" style="width: 100%;"></div>
+	  <div class="modal-header">
+		<h3>Waiting for other patients...</h3>
+	  </div>
+	  <div class="modal-body">
+		<p>Please wait for a few seconds for other players to make decisions...</p>
+		<div class="progress progress-striped active">
+			<div class="bar" style="width: 100%;"></div>
+		</div>
+	  </div>
 	</div>
-  </div>
-</div>
 
 	<!-- Death Modal -->
 	<div class="modal hide fade" id="deathModal">
@@ -205,6 +205,35 @@
 			
 			<p>You sadly have no more time to wait for a new organ.</p>
 		  </div>
+		  </div>
+	</div>
+
+
+	<!-- Move Success Modal -->
+	<div class="modal hide fade" id="moveSuccessModal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Success!</h3>
+		  </div>
+		  <div class="modal-body">
+			<p>You're finding your way along the organ trail. Keep it up and you might beat the calendar!</p>
+		  </div>
+		  <div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
+		  </div>
+	</div>
+
+	<!-- Move Fail Modal -->
+	<div class="modal hide fade" id="moveFailModal">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Sorry!</h3>
+		  </div>
+		  <div class="modal-body">
+			<p>That didn't quite work this time, but you need to keep at it while you still have a few days left...</p>
+		  </div>
+		  <div class="modal-footer">
+			<a href="#" class="btn" data-dismiss="modal">Close</a>
 		  </div>
 	</div>
 
