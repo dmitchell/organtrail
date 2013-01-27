@@ -1,0 +1,18 @@
+Game: Organ Trail
+URL: http://bit.ly/organ-trail (Playable Online)
+
+Team:
+
+- Don Mitchell (dhmitchell23) - Programming and game design
+- Eduardo Marisca (piscosour) - Front-end coding and game design
+
+Diversifiers:
+
+- Bigger Picture
+- May the (Web) Force Be with You
+
+Tech used:
+
+- Python (backend)
+- Twitter Bootstrap for UI
+- Backbone and jQuery Javascript libraries
