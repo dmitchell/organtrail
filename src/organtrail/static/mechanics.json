@@ -62,8 +62,8 @@
     		"id" : 7,
     		"name" : "Search for Organs Abroad",
     		"description" : "Maybe countries with different regulations might make it easier...",
-			"timeCost" : 78,
-			"moneyCost" : 0.2,
+			"timeCost" : 15,
+			"moneyCost" : 500,
 			"successRate" : 0,
 			"donorPoolImpact" : 1,
 			"recipientListImpact" : 1000

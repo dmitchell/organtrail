@@ -14,7 +14,7 @@ class Recipient(object):
 
     raw_players = [{
             "id" : 1,
-            "name" : "John Doe",
+            "name" : "Jim Devin",
             "lifeExpectancy" : 30,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
@@ -38,7 +38,7 @@ class Recipient(object):
         },
         {
             "id" : 3,
-            "name" : "John Doe3",
+            "name" : "Alan Merkel",
             "lifeExpectancy" : 30,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
@@ -50,7 +50,7 @@ class Recipient(object):
         },
         {
             "id" : 4,
-            "name" : "Cindy McArthur4",
+            "name" : "Julie Hunter",
             "lifeExpectancy" : 30,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
@@ -62,7 +62,7 @@ class Recipient(object):
         },
         {
             "id" : 5,
-            "name" : "John Doe5",
+            "name" : "Steve Black",
             "lifeExpectancy" : 30,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
@@ -74,7 +74,7 @@ class Recipient(object):
         },
         {
             "id" : 6,
-            "name" : "Cindy McArthur6",
+            "name" : "Alana Daniels",
             "lifeExpectancy" : 30,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
@@ -86,7 +86,7 @@ class Recipient(object):
         },
         {
             "id" : 7,
-            "name" : "John Doe7",
+            "name" : "Aaron Woods",
             "lifeExpectancy" : 30,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
@@ -98,7 +98,7 @@ class Recipient(object):
         },
         {
             "id" : 8,
-            "name" : "Cindy McArthur8",
+            "name" : "Lucy Diamonds",
             "lifeExpectancy" : 30,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
@@ -110,7 +110,7 @@ class Recipient(object):
         },
         {
             "id" : 9,
-            "name" : "John Doe9",
+            "name" : "Calvin Hobbes",
             "lifeExpectancy" : 30,
             "description" : "John has had 2 coronary bypassess and now needs a new heart.<br/>" +
                 "<p>He's active in several non-profits... He has 12 grandchildren: 3 of whom live with him...</p>",
@@ -122,7 +122,7 @@ class Recipient(object):
         },
         {
             "id" : 10,
-            "name" : "Cindy McArthur10",
+            "name" : "Frida Heine",
             "lifeExpectancy" : 30,
             "description" : "Cindy's heart failed due to a severe illness.<br/>" +
                 "<p>Cindy has 2 young children...</p>",
