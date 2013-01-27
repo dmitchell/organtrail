@@ -35,7 +35,6 @@ var GameState = Backbone.Model.extend({
 		var cacheThis = event.data;
 		$.getJSON('mechanics/' + window.currentPlayer + '/' + $(event.currentTarget).data('id'), {}, 
 				function(data) {
-					// TODO tell the user if it was successful (data.result)
 					// update donor pool
 					var dbar = $("#donor-bar");
 					dbar.width(data.donorPool + "%");

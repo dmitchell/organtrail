@@ -72,11 +72,25 @@ var FormerCollectionView = Backbone.View.extend({
 				'<td class="patient-name"><%= model.get("status") %></td></tr>');
 		this.listenTo(this.collection, 'change', this.render);
 		this.listenTo(this.collection, 'reset', this.render);
+		this.playerDied = false;
 	},
 	render : function() {
 		this.$el.html('');
 		this.collection.each(function(patient) {
 			this.$el.append(this.template({model : patient}));
+			if (!this.playerDied && patient.get('id') === window.currentPlayer) {
+				switch (patient.get('status')) {
+				case "dead":
+					$("#deathModal").modal('show');
+					break;
+				case "transplant-dead":
+					$("#rejectionModal").modal('show');
+					break;
+				case "transplant-healed":
+					$("#winModal").modal('show');
+					break;
+				}
+			}
 		}, this);
 	}
 });
