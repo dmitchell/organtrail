@@ -4,6 +4,8 @@ Created on Jan 26, 2013
 @author: dmitchell
 '''
 import random
+from mechanics import Mechanics
+import time
 
 class Recipient(object):
     '''
@@ -132,6 +134,8 @@ class Recipient(object):
         }]
     
     active_players = []
+    day_start_time = None
+    start_time_date = Mechanics.day
     
     def __init__(self, initdict):
         '''
@@ -182,3 +186,40 @@ class Recipient(object):
         if self.status == 'sick':
             self.lifeExpectancy -= 1
         self.date += 1
+        
+    @classmethod
+    def waiting_for_move(cls):
+        for player in cls.active_players:
+            if player.cant_move_until <= Mechanics.day:
+                return True
+        return False
+        
+    def game_state(self):
+        if Recipient.day_start_time is None:
+            Recipient.day_start_time = time.time()
+            
+        if Mechanics.day < 0:
+            if self.remaining_wait_time() <= 0 or len(Recipient.active_players) > 3:
+                Mechanics.new_day()
+                for player in Recipient.active_players:
+                    player.new_day()
+                return self.game_state()
+            else:
+                return "staging-room"
+        elif Mechanics.day < self.cant_move_until:
+            # see if we should trigger the day change
+            if self.remaining_wait_time() <= 0 or not Recipient.waiting_for_move():
+                Mechanics.new_day()
+                for player in Recipient.active_players:
+                    player.new_day()
+                return self.game_state()
+            else:
+                return "day-wait"
+        else:
+            return "playing"
+
+    def remaining_wait_time(self):
+        if Mechanics.day < 0:
+            return 45 - time.time() + Recipient.day_start_time
+        else:
+            return 30 - time.time() + Recipient.day_start_time

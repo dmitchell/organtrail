@@ -6,7 +6,7 @@ var GameState = Backbone.Model.extend({
 		timeRemaining : 0
 	},
 	urlRoot : function() {
-		return "state/" + this.get('state');
+		return "state/" + window.currentPlayer;
 	},
 	initialize : function() {
 		$('#stagingModal').modal('show');
@@ -20,14 +20,13 @@ var GameState = Backbone.Model.extend({
 	},
 	waitingRoom : function(state) {
 		window.recipients.reset(state.get('players'));
-		if (state.get('state') === "staging-room") {
+		if (state.get('state') === "staging-room" || state.get('state') === 'day-wait') {
 			window.setTimeout(function() { 
 				state.pollWaitingRoom(state);
 			}, 
 			1000);
 		}
 		else {
-			console.log(state.get('state'));
 			$('#stagingModal').modal('hide');
 		}
 	},
@@ -44,6 +43,8 @@ var GameState = Backbone.Model.extend({
 					window.recipients.reset(data.players);
 			        // update state
 					cacheThis.set('state', data.state);
+					$('#stagingModal').modal('show');
+					cacheThis.pollWaitingRoom(cacheThis);
 		});
 	}
 });
